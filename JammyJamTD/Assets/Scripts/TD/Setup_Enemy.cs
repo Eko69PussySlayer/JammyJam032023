@@ -5,20 +5,19 @@ using UnityEngine;
 public class Setup_Enemy : MonoBehaviour
 {
 
-    public GameObject enemyPrefab;
-    public Transform[] pathPoints;
+    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] Transform[] pathPoints;
 
-    public float spawnDelay;
+    [SerializeField] Transform enemyParent;
+
+    [SerializeField] float spawnDelay;
     private float spawnTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         spawnTimer = 0;
-        GameObject enemyBehaviour = enemyPrefab.transform.GetChild(0).gameObject;
-        PathFollow path = enemyBehaviour.GetComponent(typeof(PathFollow)) as PathFollow;
-        path.Points = pathPoints;
-        Debug.Log(path.Points);
+        enemyPrefab.GetComponent<PathFollow>().Points = pathPoints;
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class Setup_Enemy : MonoBehaviour
         {
             Vector3 spawnPosition = pathPoints[0].transform.position;
             spawnTimer = 0;
-            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, enemyParent);
             
         }
     }

@@ -7,7 +7,7 @@ public class PathFollow : MonoBehaviour
 
     public Transform[] Points;
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveSpeed = 10;
 
     private int pointsIndex;
 
