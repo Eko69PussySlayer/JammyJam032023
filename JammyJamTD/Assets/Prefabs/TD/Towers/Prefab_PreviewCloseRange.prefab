@@ -60,7 +60,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b593c50696a555f418c485175f2944f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   itemToBePlaced: {fileID: 4408568077715118015, guid: 33a50547b62d31848add5f3545c46d11, type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &7049830893563631487
 GameObject:
   m_ObjectHideFlags: 0
