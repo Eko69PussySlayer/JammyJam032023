@@ -30,7 +30,6 @@ public class Setup_Enemy : MonoBehaviour
             Vector3 spawnPosition = pathPoints[0].transform.position;
             spawnTimer = 0;
             GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, enemyParent);
-            
         }
     }
 }
