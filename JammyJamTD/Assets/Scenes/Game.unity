@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: PanAmount
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 6074439713980800687, guid: f79db89f797b87e4e9a58967270a9b00, type: 3}
+      propertyPath: AutoFarmActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8722494113396251198, guid: f79db89f797b87e4e9a58967270a9b00, type: 3}
       propertyPath: m_Name
       value: Clicker

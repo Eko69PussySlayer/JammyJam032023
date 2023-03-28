@@ -11,18 +11,26 @@ public class Clicker : MonoBehaviour
     public Camera cam;
     public TMP_Text goldText;
     public TMP_Text AutoFarmText;
+    public TMP_Text Texty;
     public GameObject AutoFarm;
     public int gold = 0;
     public int goldPerClick = 1;
    public GameObject Head;
     public int AutoClickPrice = 10;
     public bool AutoFarmActive = false;
+    public int AutoFarmGoldPerSecond = 1;
+    protected float Timer;
+    public int DelayAmount = 1;
+    public int AutoFarmPrice = 100;
+    public int AutoFarmGoldModifer = 2;
+    public int AutoFarmPriceModifer = 2;
+    
 
     // Start is called before the first frame update
     void Start()
     {   
          GameObject Head = GameObject.Find("Skull01");
-        goldText.text = "Get Gold by clicking the Head";
+        Texty.text = "Get Gold by clicking the Head";
         Debug.Log("You have " + gold + " gold!");    
     }
 
@@ -53,28 +61,36 @@ public class Clicker : MonoBehaviour
 
     }
 
-
     public void buyAutoFarm()
     {
-        if (gold >= 100)
+        if (gold >= AutoFarmPrice)
         {
-            gold -= 100;
+            gold -= AutoFarmPrice;
             AutoFarm.SetActive(true);
+            AutoFarmGoldPerSecond = AutoFarmGoldPerSecond * AutoFarmGoldModifer;
+            AutoFarmPrice = AutoFarmPrice * AutoFarmPriceModifer;
             goldText.text = "You have " + gold + " gold!";
             AutoFarmText.text = "You bought Gold Mine!";
+            AutoFarmActive = true;
        
         }
         else
         {
-            goldText.text = "You need 100 gold to buy this!";
+            Texty.text = "You need 100 gold to buy this!";
         }
     }
 
     public void AutoFarmGold()
     {
-        gold += (int) (1000.0f * Time.deltaTime);
-        Debug.Log("You have " + gold + " gold!");
+        Timer += Time.deltaTime;
+ 
+         if (Timer >= DelayAmount)
+         {
+             Timer = 0f;
+             gold += AutoFarmGoldPerSecond;
+                Debug.Log("You have " + gold + " gold!");
 
+         }
     }
 
     public void CameraBack()
@@ -82,21 +98,12 @@ public class Clicker : MonoBehaviour
         cam.transform.position = target2.position;
     }
 
-    public void UpgradeGoldPerClick()
-    {
-        if (gold >= AutoClickPrice)
-        {
-            AutoClickPrice *= 3;
-            gold -= AutoClickPrice;
-            goldPerClick *= 2;
-            goldText.text = "You have " + gold + " gold!";
-        }
-        else
-        {
-            goldText.text = "You need" + AutoClickPrice +  "gold to upgrade!";
-        }
-    }
+
+
+ 
+
 
 }
+
 
 
